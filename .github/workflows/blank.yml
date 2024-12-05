@@ -7,16 +7,11 @@ on:
 
 env:
   FIRST_NAME: John
-  
+  LAST_NAME: Doe
 
 jobs:
   example-job:
     runs-on: ubuntu-latest
-    env:
-      GREETING: "Hello ${{ env.FIRST_NAME }}"
     steps:
-      - name: Print environment variables
-        run: |
-          echo "FULL_NAME: $FULL_NAME"
-          echo "GREETING: $GREETING"
-          echo "FIRST_NAME: $FIRST_NAME"
+      - name: Set full name
+        run: echo "FULL_NAME=${{ env.FIRST_NAME }} ${{ env.LAST_NAME }}" >> $GITHUB_ENV
