@@ -1,0 +1,22 @@
+name: Print Environment Variables
+
+on:
+  push:
+    branches:
+      - main  # Run this workflow on pushes to the 'main' branch
+
+env:
+  FIRST_NAME: John
+  FULL_NAME: ${{ env.FIRST_NAME }} Doe
+
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    env:
+      GREETING: "Hello ${{ env.FIRST_NAME }}"
+    steps:
+      - name: Print environment variables
+        run: |
+          echo "FULL_NAME: $FULL_NAME"
+          echo "GREETING: $GREETING"
+          echo "FIRST_NAME: $FIRST_NAME"
