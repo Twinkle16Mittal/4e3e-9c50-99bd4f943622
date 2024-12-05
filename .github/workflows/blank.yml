@@ -5,17 +5,16 @@ on:
     branches:
       - main  # Run this workflow on pushes to the 'main' branch
 
-env:
-  FIRST_NAME: John
-
 jobs:
   example-job:
     runs-on: ubuntu-latest
     env:
-      GREETING: "Hello ${{ env.FIRST_NAME }}"  # This also works!
+      BASE_URL: https://api.example.com
+      API_VERSION: v1
     steps:
-      - name: Print names
-        run: |
-          echo $FULL_NAME
-          echo $GREETING
+      - name: Set derived environment variable
+        env:
+          FULL_API_URL: ${{ env.BASE_URL }}/${{ env.API_VERSION }}
+        run: echo $FULL_API_URL
+
 
