@@ -5,16 +5,22 @@ on:
     branches:
       - main  # Run this workflow on pushes to the 'main' branch
 
+env:
+  GLOBAL_VAR: global value
+
 jobs:
   example-job:
     runs-on: ubuntu-latest
     env:
-      BASE_URL: https://api.example.com
-      API_VERSION: v1
+      JOB_VAR: ${{ env.GLOBAL_VAR }} - job specific
     steps:
-      - name: Set derived environment variable
+      - name: Use environment variables
         env:
-          FULL_API_URL: ${{ env.BASE_URL }}/${{ env.API_VERSION }}
-        run: echo $FULL_API_URL
+          STEP_VAR: ${{ env.JOB_VAR }} - step specific
+        run: |
+          echo $GLOBAL_VAR
+          echo $JOB_VAR
+          echo $STEP_VAR
+
 
 
