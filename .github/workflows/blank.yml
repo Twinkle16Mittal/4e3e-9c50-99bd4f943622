@@ -11,12 +11,10 @@ env:
 jobs:
   example-job:
     runs-on: ubuntu-latest
-    env:
-      JOB_VAR: ${{ env.GLOBAL_VAR }} - job specific
     steps:
       - name: Use environment variables
         env:
-          STEP_VAR: ${{ env.JOB_VAR }} - step specific
+          STEP_VAR: ${{ env.GLOBAL_VAR }} - step specific
         run: |
           echo $GLOBAL_VAR
           echo $JOB_VAR
