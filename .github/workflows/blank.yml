@@ -7,7 +7,7 @@ on:
 
 env:
   FIRST_NAME: John
-  FULL_NAME: ${{ env.FIRST_NAME }} Doe
+  
 
 jobs:
   example-job:
